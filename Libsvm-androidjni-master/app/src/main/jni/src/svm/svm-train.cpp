@@ -72,12 +72,12 @@ int svmtrain(int argc, char **argv)
 		exit(1);
 	}
 
-	if(cross_validation)
-	{
+	//if(cross_validation)
+	//{
 		do_cross_validation();
-	}
-	else
-	{
+//	}
+	//else
+	//{
 		modelt = svm_train(&prob,&param);
 		if(svm_save_model(model_file_name,modelt))
 		{
@@ -85,7 +85,7 @@ int svmtrain(int argc, char **argv)
 			exit(1);
 		}
 		svm_free_and_destroy_model(&modelt);
-	}
+	//}
 	svm_destroy_param(&param);
 	free(prob.y);
 	free(prob.x);
@@ -253,6 +253,7 @@ void parse_command_line(int argc, char **argv, char *input_file_name, char *mode
 
 void read_problem(const char *filename)
 {
+    LOGD("Inside Read Problem %s", filename);
 	int elements, max_index, inst_max_index, i, j;
         LOGD("About to open file %s", filename);
 	FILE *fp = fopen(filename,"r");
@@ -261,7 +262,7 @@ void read_problem(const char *filename)
 
 	if(fp == NULL)
 	{
-		LOGD("can't open input file %s\n",filename);
+		LOGD("can't input file %s\n",filename);
 		exit(1);
 	}
 

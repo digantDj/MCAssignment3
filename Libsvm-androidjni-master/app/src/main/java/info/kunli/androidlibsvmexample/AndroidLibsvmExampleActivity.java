@@ -52,13 +52,18 @@ public class AndroidLibsvmExampleActivity extends Activity {
     	int cost = 4; // Cost
     	int isProb = 0;
     	float gamma = 0.25f; // Gamma
+        int result=10;
     	String trainingFileLoc = Environment.getExternalStorageDirectory()+"/traindata";
     	String modelFileLoc = Environment.getExternalStorageDirectory()+"/model";
-    	if (trainClassifierNative(trainingFileLoc, kernelType, cost, gamma, isProb,
-    			modelFileLoc) == -1) {
+        result = trainClassifierNative(trainingFileLoc, kernelType, cost, gamma, isProb,
+                modelFileLoc);
+    	if (result == -1) {
     		Log.d(TAG, "training err");
     		finish();
     	}
+        else{
+            Log.d(TAG,"Result is :"+ result);
+        }
     	Toast.makeText(this, "Training is done", Toast.LENGTH_SHORT).show();
     }
     
